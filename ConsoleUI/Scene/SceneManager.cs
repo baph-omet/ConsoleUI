@@ -20,17 +20,16 @@ namespace ConsoleUI {
 
         private string GetBuffer() {
             if (BaseScene == null) return "";
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine(BaseScene.Render(false));
-            return builder.ToString();
+            return BaseScene.Render(false);
         }
 
         internal void Render() {
             try {
                 string buffer = GetBuffer();
                 List<string> rows = buffer.Split(Environment.NewLine).ToList();
+                rows.ForEach(delegate(String line){ line = line.RemoveWhitespace(); });
                 string[] previousRows = PreviousBuffer.Split(Environment.NewLine);
-                for (int r = 0; r < rows.Count || r < previousRows.Length; r++) {
+                for (int r = 0; (r < rows.Count || r < previousRows.Length) && r < Console.BufferHeight; r++) {
 
                     if (r >= rows.Count) {
                         rows.Add(previousRows[r]);
@@ -43,15 +42,18 @@ namespace ConsoleUI {
                         Console.SetCursorPosition(0, r);
                         Console.WriteLine(rows[r]);
                         continue;
+
                     }
 
 
-                    for (int i = 0; i < rows[r].Length || i < previousRows[r].Length; i++) {
+                    for (int i = 0; (i < rows[r].Length || i < previousRows[r].Length) && i < Console.BufferWidth; i++) {
                         if (i >= rows[r].Length) {
                             rows[r] += previousRows[r][i];
-                        } else if (i < previousRows[r].Length && rows[r][i] == previousRows[r][i]) continue;
+                        } else if (i < previousRows[r].Length && rows[r][i] == previousRows[r][i]) 
+                            continue;
 
                         Console.SetCursorPosition(i, r);
+
                         Console.Write(rows[r][i]);
                     }
                 }

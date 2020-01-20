@@ -49,12 +49,12 @@
     <Compile Include="Control.cs" />
     <Compile Include="GameProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scene.cs" />
-    <Compile Include="SceneManager.cs" />
-    <Compile Include="Sprite.cs" />
-    <Compile Include="TextBox.cs" />
-    <Compile Include="TextEnterScene.cs" />
-    <Compile Include="TextScene.cs" />
+    <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Scene\SceneManager.cs" />
+    <Compile Include="Sprite\Sprite.cs" />
+    <Compile Include="Sprite\TextBox.cs" />
+    <Compile Include="Scene\TextEnterScene.cs" />
+    <Compile Include="Scene\TextScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="KeyFile.pfx" />

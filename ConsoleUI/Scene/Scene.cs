@@ -39,9 +39,10 @@ namespace ConsoleUI {
         /// Updates the graphics of the scene. If any subscenes are present, they are rendered instead.
         /// </summary>
         public string Render(bool print = true) {
-            Console.Clear();
+            if (print) Console.Clear();
             StringBuilder buffer = new StringBuilder();
-            foreach (string spritename in SpriteHash.Keys) if (SpriteHash[spritename] != null) buffer.AppendLine(SpriteHash[spritename].Render());
+            if (Subscene != null) buffer.Append(Subscene.Render());
+            else foreach (string spritename in SpriteHash.Keys) if (SpriteHash[spritename] != null) buffer.AppendLine(SpriteHash[spritename].Render());
             if (print) Console.Write(buffer.ToString());
             Rerender = false;
             return buffer.ToString();

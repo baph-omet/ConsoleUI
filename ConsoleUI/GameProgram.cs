@@ -13,6 +13,10 @@ namespace ConsoleUI {
         protected static void Initialize() {
             SceneManager = new SceneManager();
             Running = true;
+            Console.SetWindowSize(WindowSize[0], WindowSize[1]);
+            Console.SetBufferSize(WindowSize[0], WindowSize[1]);
+            Console.SetWindowPosition(0, 0);
+            Console.CursorVisible = false;
         }
 
         public static void Run() {
@@ -22,13 +26,14 @@ namespace ConsoleUI {
         }
 
         private static void GameLoop() {
-            Thread t = null;
+            //Thread t = null;
             while (Running) {
                 SceneManager.Update();
-                if (t != null && t.IsAlive) t.Interrupt();
+                SceneManager.Render();
+                /*if (t != null && t.IsAlive) t.Interrupt();
 
                 t = new Thread(new ThreadStart(SceneManager.Render));
-                t.Start();
+                t.Start();*/
             }
         }
 

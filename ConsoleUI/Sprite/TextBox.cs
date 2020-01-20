@@ -17,7 +17,7 @@ namespace ConsoleUI {
 
         public TextBox(string text) : this(null, text) { }
         public TextBox(string title, string text) : this(title, text, null) { }
-        public TextBox(string title, string text, string[] choices) : this(title,text,choices,Console.WindowWidth - 1) { }
+        public TextBox(string title, string text, string[] choices) : this(title,text,choices,Console.BufferWidth - 1) { }
         public TextBox(string title, string text, string[] choices, int width) : this(title, text, choices, width, new int[] { 0, 0 }) { }
         public TextBox(string title, string text, string[] choices, int width, int[] margin) {
             Title = title;
@@ -38,7 +38,7 @@ namespace ConsoleUI {
             for (int i = 0; i < Margin[1]; i++) buffer.AppendLine();
 
             // Title
-            if (Title != null && Title.Length > 0) buffer.AppendLine(GetLeftMargin() + String.Format("{0," + (GameProgram.WindowSize[0] - 20) + "}", Title));
+            if (Title != null && Title.Length > 0) buffer.AppendLine(GetLeftMargin() + String.Format("{0," + (Console.BufferWidth - 20) + "}", Title));
 
             // Header
             buffer.Append(GetLeftMargin() + " ");
