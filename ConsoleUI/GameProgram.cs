@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 namespace ConsoleUI {
     public class GameProgram {
@@ -26,14 +25,9 @@ namespace ConsoleUI {
         }
 
         private static void GameLoop() {
-            //Thread t = null;
             while (Running) {
                 SceneManager.Update();
                 SceneManager.Render();
-                /*if (t != null && t.IsAlive) t.Interrupt();
-
-                t = new Thread(new ThreadStart(SceneManager.Render));
-                t.Start();*/
             }
         }
 

@@ -59,6 +59,7 @@ namespace ConsoleUI {
                 Subscene = s;
                 s.Superscene = this;
             }
+            Console.Clear();
         }
 
         /// <summary>
@@ -71,6 +72,7 @@ namespace ConsoleUI {
                 EndScene();
                 Rerender = true;
             }
+            Console.Clear();
         }
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace ConsoleUI {
             if (Superscene != null) {
                 Superscene.Subscene = null;
                 Superscene.Rerender = true;
+                Console.Clear();
             }
         }
 
@@ -90,6 +93,7 @@ namespace ConsoleUI {
         public void NextScene(Scene s) {
             if (Superscene != null) {
                 Superscene.Subscene = s;
+                Console.Clear();
             }
         }
 

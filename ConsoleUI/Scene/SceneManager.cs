@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Vergil.Utilities;
 
@@ -27,7 +26,7 @@ namespace ConsoleUI {
             try {
                 string buffer = GetBuffer();
                 List<string> rows = buffer.Split(Environment.NewLine).ToList();
-                rows.ForEach(delegate(String line){ line = line.RemoveWhitespace(); });
+                rows.ForEach((line) => line = line.RemoveWhitespace());
                 string[] previousRows = PreviousBuffer.Split(Environment.NewLine);
                 for (int r = 0; (r < rows.Count || r < previousRows.Length) && r < Console.BufferHeight; r++) {
 
@@ -73,11 +72,11 @@ namespace ConsoleUI {
         }
 
         public void EndSubscene() {
-            GetTopScene().Superscene.Subscene = null;
+            GetTopScene().EndScene();
         }
 
         public void NextScene(Scene scene) {
-            GetTopScene().Superscene.Subscene = scene;
+            GetTopScene().Superscene.AddSubscene(scene);
         }
 
         public void SetBaseScene(Scene scene) {
